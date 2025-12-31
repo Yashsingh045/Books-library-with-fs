@@ -19,6 +19,21 @@ app.get('/api/books', async (req, res) => {
     }
 });
 
+app.get('/api/books/:id', async (req, res) => {
+    try {
+        const data = await fs.readFile(booksPath, 'utf8');
+        const books = JSON.parse(data);
+        const book = books.find(b => b.id === req.params.id);
+        if (book) {
+            res.json(book);
+        } else {
+            res.status(404).json({ error: 'Book not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to read books data' });
+    }
+});
+
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
