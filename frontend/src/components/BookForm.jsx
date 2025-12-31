@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Save, X } from 'lucide-react';
+import { Save, ArrowLeft } from 'lucide-react';
 
 const BookForm = () => {
     const { id } = useParams();
@@ -30,13 +30,25 @@ const BookForm = () => {
             : 'http://localhost:5001/api/books';
         const method = isEdit ? 'PUT' : 'POST';
 
+        const payload = {
+            ...formData,
+            publishedYear: parseInt(formData.publishedYear)
+        };
+
         fetch(url, {
             method,
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(formData)
+            body: JSON.stringify(payload)
         })
+            .then(res => {
+                if (!res.ok) throw new Error('Failed to save book');
+                return res.json();
+            })
             .then(() => navigate('/'))
-            .catch(err => console.error(err));
+            .catch(err => {
+                console.error(err);
+                alert('Error saving book. Please try again.');
+            });
     };
 
     return (
@@ -76,13 +88,15 @@ const BookForm = () => {
                     required
                 />
                 <div className="form-actions">
+
+                    <button type="button" className="btn btn-danger" onClick={() => navigate('/')}>
+                        <ArrowLeft size={20} />
+                        <span>Back</span>
+                    </button>
+
                     <button type="submit" className="btn btn-primary">
                         <Save size={20} />
                         <span>{isEdit ? 'Update Book' : 'Save Book'}</span>
-                    </button>
-                    <button type="button" className="btn btn-danger" onClick={() => navigate('/')}>
-                        <X size={20} />
-                        <span>Cancel</span>
                     </button>
                 </div>
             </form>

@@ -38,6 +38,14 @@ const BookList = () => {
         book.author.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
+    const groupedByGenre = filteredBooks.reduce((acc, book) => {
+        if (!acc[book.genre]) acc[book.genre] = [];
+        acc[book.genre].push(book);
+        return acc;
+    }, {});
+
+    const latestBooks = [...filteredBooks].sort((a, b) => b.publishedYear - a.publishedYear).slice(0, 4);
+
     if (loading) return <div className="loading">Loading books...</div>;
 
     return (
@@ -60,15 +68,29 @@ const BookList = () => {
                     <p>Try adjusting your search or add a new book.</p>
                 </div>
             ) : (
-                <div className="book-grid">
-                    {filteredBooks.map(book => (
-                        <BookCard
-                            key={book.id}
-                            book={book}
-                            onDelete={handleDelete}
-                        />
+                <>
+                    {!searchTerm && latestBooks.length > 0 && (
+                        <div className="category-section">
+                            <h2 className="category-title">Latest Releases</h2>
+                            <div className="book-grid">
+                                {latestBooks.map(book => (
+                                    <BookCard key={`latest-${book.id}`} book={book} onDelete={handleDelete} />
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
+                    {Object.keys(groupedByGenre).map(genre => (
+                        <div className="category-section" key={genre}>
+                            <h2 className="category-title">{genre}</h2>
+                            <div className="book-grid">
+                                {groupedByGenre[genre].map(book => (
+                                    <BookCard key={book.id} book={book} onDelete={handleDelete} />
+                                ))}
+                            </div>
+                        </div>
                     ))}
-                </div>
+                </>
             )}
         </div>
     );
