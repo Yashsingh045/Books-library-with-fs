@@ -13,8 +13,8 @@ const BookList = () => {
 
     const fetchBooks = () => {
         setLoading(true);
-        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5001/api/books';
-        fetch(apiUrl)
+        const baseApiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+        fetch(`${baseApiUrl}/api/books`)
             .then(res => res.json())
             .then(data => {
                 setBooks(data);
