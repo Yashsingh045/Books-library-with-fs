@@ -57,6 +57,24 @@ app.post('/api/books', async (req, res) => {
     }
 });
 
+app.put('/api/books/:id', async (req, res) => {
+    try {
+        const { title, author, genre, publishedYear } = req.body;
+        const data = await fs.readFile(booksPath, 'utf8');
+        let books = JSON.parse(data);
+        const index = books.findIndex(b => b.id === req.params.id);
+        if (index !== -1) {
+            books[index] = { ...books[index], title, author, genre, publishedYear };
+            await fs.writeFile(booksPath, JSON.stringify(books, null, 2));
+            res.json(books[index]);
+        } else {
+            res.status(404).json({ error: 'Book not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to update book' });
+    }
+});
+
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
