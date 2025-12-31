@@ -1,7 +1,10 @@
 import React from 'react';
 import { Calendar, User, Info, Edit2, Trash2 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
-const BookCard = ({ book, onEdit, onDelete, onView }) => {
+const BookCard = ({ book, onDelete }) => {
+    const navigate = useNavigate();
+
     return (
         <div className="glass-card book-card">
             <div className="book-card-header">
@@ -19,10 +22,10 @@ const BookCard = ({ book, onEdit, onDelete, onView }) => {
                 </div>
             </div>
             <div className="book-card-actions">
-                <button className="btn-icon" onClick={() => onView(book.id)}>
+                <button className="btn-icon" onClick={() => navigate(`/view/${book.id}`)}>
                     <Info size={18} />
                 </button>
-                <button className="btn-icon" onClick={() => onEdit(book.id)}>
+                <button className="btn-icon" onClick={() => navigate(`/edit/${book.id}`)}>
                     <Edit2 size={18} />
                 </button>
                 <button className="btn-icon btn-icon-danger" onClick={() => onDelete(book.id)}>
