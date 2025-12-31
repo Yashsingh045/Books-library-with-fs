@@ -75,6 +75,22 @@ app.put('/api/books/:id', async (req, res) => {
     }
 });
 
+app.delete('/api/books/:id', async (req, res) => {
+    try {
+        const data = await fs.readFile(booksPath, 'utf8');
+        let books = JSON.parse(data);
+        const filteredBooks = books.filter(b => b.id !== req.params.id);
+        if (books.length !== filteredBooks.length) {
+            await fs.writeFile(booksPath, JSON.stringify(filteredBooks, null, 2));
+            res.json({ message: 'Book deleted successfully' });
+        } else {
+            res.status(404).json({ error: 'Book not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to delete book' });
+    }
+});
+
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
