@@ -16,7 +16,8 @@ const BookForm = () => {
 
     useEffect(() => {
         if (isEdit) {
-            fetch(`http://localhost:5001/api/books/${id}`)
+            const baseApiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+            fetch(`${baseApiUrl}/api/books/${id}`)
                 .then(res => res.json())
                 .then(data => setFormData(data))
                 .catch(err => console.error(err));
@@ -25,9 +26,10 @@ const BookForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        const baseApiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5001';
         const url = isEdit
-            ? `http://localhost:5001/api/books/${id}`
-            : 'http://localhost:5001/api/books';
+            ? `${baseApiUrl}/api/books/${id}`
+            : `${baseApiUrl}/api/books`;
         const method = isEdit ? 'PUT' : 'POST';
 
         const payload = {
