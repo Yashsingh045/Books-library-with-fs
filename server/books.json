@@ -7,6 +7,76 @@
     "publishedYear": 1937
   },
   {
+    "id": "3",
+    "title": "Dune",
+    "author": "Frank Herbert",
+    "genre": "Science Fiction",
+    "publishedYear": 1965
+  },
+  {
+    "id": "4",
+    "title": "The Martian",
+    "author": "Andy Weir",
+    "genre": "Science Fiction",
+    "publishedYear": 2011
+  },
+  {
+    "id": "5",
+    "title": "Foundation",
+    "author": "Isaac Asimov",
+    "genre": "Science Fiction",
+    "publishedYear": 1951
+  },
+  {
+    "id": "6",
+    "title": "Gone Girl",
+    "author": "Gillian Flynn",
+    "genre": "Mystery",
+    "publishedYear": 2012
+  },
+  {
+    "id": "7",
+    "title": "The Girl with the Dragon Tattoo",
+    "author": "Stieg Larsson",
+    "genre": "Mystery",
+    "publishedYear": 2005
+  },
+  {
+    "id": "8",
+    "title": "The Silent Patient",
+    "author": "Alex Michaelides",
+    "genre": "Mystery",
+    "publishedYear": 2019
+  },
+  {
+    "id": "9",
+    "title": "Sherlock Holmes",
+    "author": "Arthur Conan Doyle",
+    "genre": "Mystery",
+    "publishedYear": 1892
+  },
+  {
+    "id": "10",
+    "title": "Clean Code",
+    "author": "Robert C. Martin",
+    "genre": "Development",
+    "publishedYear": 2008
+  },
+  {
+    "id": "11",
+    "title": "The Pragmatic Programmer",
+    "author": "Andrew Hunt",
+    "genre": "Development",
+    "publishedYear": 1999
+  },
+  {
+    "id": "12",
+    "title": "Refactoring",
+    "author": "Martin Fowler",
+    "genre": "Development",
+    "publishedYear": 1999
+  },
+  {
     "id": "2",
     "title": "1984",
     "author": "George Orwell",

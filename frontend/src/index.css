@@ -1,15 +1,15 @@
 :root {
   --primary: #6366f1;
   --primary-hover: #4f46e5;
-  --bg-deep: #0f172a;
-  --bg-card: rgba(30, 41, 59, 0.7);
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --accent: #10b981;
+  --bg-deep: #cbd5e1;
+  --bg-card: rgba(255, 255, 255, 0.4);
+  --text-main: #334155;
+  --text-muted: #64748b;
+  --glass-border: rgba(0, 0, 0, 0.1);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08);
   --danger: #ef4444;
+  --glass-bg: rgba(96, 177, 185, 0.05);
+  --accent: #555759;
 }
 
 ::-webkit-scrollbar {
@@ -96,8 +96,8 @@ body {
   padding: 0.75rem;
   border-radius: 0.5rem;
   border: 1px solid var(--glass-border);
-  background: rgba(15, 23, 42, 0.5);
-  color: white;
+  background: rgba(211, 222, 248, 0.5);
+  color: var(--text-main);
   margin-bottom: 1rem;
 }
 
@@ -316,6 +316,7 @@ a {
 .search-input {
   padding-left: 3rem;
   margin-bottom: 0;
+  color: var(--text-main);
 }
 
 .empty-state {
@@ -331,4 +332,17 @@ a {
 .empty-state h3 {
   margin: 0;
   color: var(--text-main);
+}
+
+.category-section {
+  margin-bottom: 4rem;
+}
+
+.category-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--text-main);
+  border-left: 4px solid var(--primary);
+  padding-left: 1rem;
 }
