@@ -13,7 +13,8 @@ const BookList = () => {
 
     const fetchBooks = () => {
         setLoading(true);
-        fetch('http://localhost:5001/api/books')
+        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5001/api/books';
+        fetch(apiUrl)
             .then(res => res.json())
             .then(data => {
                 setBooks(data);
@@ -27,7 +28,8 @@ const BookList = () => {
 
     const handleDelete = (id) => {
         if (window.confirm('Are you sure you want to delete this book?')) {
-            fetch(`http://localhost:5001/api/books/${id}`, { method: 'DELETE' })
+            const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+            fetch(`${apiUrl}/api/books/${id}`, { method: 'DELETE' })
                 .then(() => fetchBooks())
                 .catch(err => console.error(err));
         }

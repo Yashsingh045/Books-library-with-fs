@@ -8,7 +8,8 @@ const BookDetails = () => {
     const [book, setBook] = useState(null);
 
     useEffect(() => {
-        fetch(`http://localhost:5001/api/books/${id}`)
+        const baseApiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+        fetch(`${baseApiUrl}/api/books/${id}`)
             .then(res => res.json())
             .then(data => setBook(data))
             .catch(err => console.error(err));
