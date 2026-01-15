@@ -7,6 +7,9 @@ app.use(cors());
 app.use(express.json());
 
 const bookRoutes = require('./routes/bookRoutes');
+app.get("/", (req, res) => {
+    res.send("Hello form Server");
+});
 app.use('/api/books', bookRoutes);
 
 app.listen(port, () => {
